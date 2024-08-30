@@ -22,16 +22,16 @@ class Solution:
 
         for idx, val in enumerate(nums):
             if val not in hashmap:
-                print(f'val not found. adding {val} to hashmap')
+                # print(f'val not found. adding {val} to hashmap')
                 hashmap[val] = idx
             else:
-                print(f'VALUE {val} FOUND!')
+                # print(f'VALUE {val} FOUND!')
                 indexInHash = hashmap[val]
-                print(f'VALUE {val} at index {indexInHash} vs {idx}' )
+                # print(f'VALUE {val} at index {indexInHash} vs {idx}' )
                 difference = abs(indexInHash - idx)
 
                 if difference <= k:
-                    print(f'is {difference} <= {k}? TRUE')
+                    # print(f'is {difference} <= {k}? TRUE')
                     return True
                 else:
                     hashmap[val] = idx #update
