@@ -7,7 +7,7 @@ class Solution:
         #else it is false
         answer = '' #make answer empty str
         s = s.lower() #lowercase
-        specialChars = [',', '.', ':', ' ', '.', '@', '#', '_', '', '`', "'", "{", '}', '/', '[', ']', "\"", "\\", "-", "?", ";", "!"]
+        specialChars = [',', '.', ':', ' ', '.', '@', '#', '_', '', '`', "'", "{", '}', '/', '[', ']', "\"", "\\", "-", "?", ";", "!", "(", ")"]
         for i in range(len(s)):
             if s[i] in (specialChars):
                 # print(f'SPECIAL CHARACTER FOUND: || {s[i]} ||')
