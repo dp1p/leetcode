@@ -7,12 +7,8 @@ class Solution:
         #else it is false
         answer = '' #make answer empty str
         s = s.lower() #lowercase
-        specialChars = [',', '.', ':', ' ', '.', '@', '#', '_', '', '`', "'", "{", '}', '/', '[', ']', "\"", "\\", "-", "?", ";", "!", "(", ")"]
         for i in range(len(s)):
-            if s[i] in (specialChars):
-                # print(f'SPECIAL CHARACTER FOUND: || {s[i]} ||')
-                pass
-            else:
+            if s[i].isalpha() or s[i].isdigit():
                 answer+=(s[i])
         print(answer)
         return answer[::-1] == answer
