@@ -1,17 +1,37 @@
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        #make it a list, because strs are immutable
-        #remove all white spaces, puncuations, and as well as capitalizations
-        #if str[::-1] == str 
-        #return true
-        #else it is false
-        answer = '' #make answer empty str
-        s = s.lower() #lowercase
-        for i in range(len(s)):
-            if s[i].isalpha() or s[i].isdigit():
-                answer+=(s[i])
-        print(answer)
-        return answer[::-1] == answer
+        newStr = ''
         
+        s = s.lower()
+        
+        for letter in s:
+            if letter.isalpha():
+                newStr += letter
+            else:
+                newStr = newStr.replace(letter, ' ')
+            
+        if len(newStr) == 0:
+            return True
 
-        # listStr = list(s.lower().replace(',','').replace(':','').replace(' ','').replace('.','').replace('@','').replace("#",'').replace('_',''))
+        left = 0
+        right = len(newStr)-1
+
+        if len(newStr) % 2 == 0:
+            # print(f'right {right}')
+            # print(f'left {left}')
+            while left <= right:
+               
+                if newStr[left] == newStr[right]:
+                    left += 1
+                    right -= 1
+                else:
+                    return False
+            return True
+        else:
+            while left != right:
+                if newStr[left] == newStr[right]:
+                    left += 1
+                    right -= 1
+                else:
+                    return False
+            return True
