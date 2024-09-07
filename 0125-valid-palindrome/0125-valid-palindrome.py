@@ -5,11 +5,11 @@ class Solution:
         s = s.lower()
         
         for letter in s:
-            if letter.isalpha():
+            if letter.isalpha() or letter.isdigit():
                 newStr += letter
             else:
                 newStr = newStr.replace(letter, ' ')
-            
+
         if len(newStr) == 0:
             return True
 
