@@ -1,27 +1,23 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        #we know hashmaps are O(1) when it comes to key
-        #we can subtract the target - num = difference
-        #if difference is not in our dict, we can just store it as the difference the key, value is the index
-
-        #we do it reverse, instead of having the index of nums as keys, we have the value of nums as key 
-        hashMap = {} #store the difference in here in here
-
-        i = 0
-        for idx, value in enumerate(nums): 
-            # print(idx, value)
-            difference = target - value
-            if difference not in hashMap: #if the difference not in the hashMap
-                hashMap[value] = idx
-                # print(hashMap)
+        #subtract target from the first num
+        #if the difference is not in the nums arr, continue
+            #we will store our value in a hash map [idx, number]
+        #if the difference is in our nums arr (and a different index)
+            #return nums, difference
+        #if len(nums) == 1 and nums[0] == target
+            #return nums
+        
+        h = {} #to store nums, and if difference is in here, then return it
+        for idx, number in enumerate(nums):
+            difference = target - number #9-7
+            # print(difference)
+            if difference not in h.keys():
+                # print(f'{difference} NOT IN HASHMAP ADDING {number}')
+                h[number] = idx
             else:
-                return idx, hashMap[difference] #hashMap[difference] will use `difference` as a key
-
-        
-        
-        # for i in range(len(nums)): #now we will subtract the num[i] from target and find it in hashmap
-        #     findNum = target - nums[i]
-        #     if findNum in hashMap.values():
-        #         return i, hashMap[i]
-
-
+                # print(f' {difference} IN HASHMAP')
+                number = h.get(difference)
+                return idx, nums.index(difference)
+                
+        # print(h)
