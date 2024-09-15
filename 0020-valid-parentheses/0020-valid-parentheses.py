@@ -18,7 +18,7 @@ class Solution:
         stack = [] #LAST IN, FIRST OUT 
         for char in s:
             if char in closeToOpen: #if the character is a closing bracket
-                if closeToOpen[char] == stack[-1]: #if the value of ']' is equal to the first char of the stack (which should be an open)
+                if stack and stack[-1] == closeToOpen[char]: #if the value of ']' is equal to the first char of the stack (which should be an open)
                     stack.pop()
                 else:
                     return False
