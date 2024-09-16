@@ -3,25 +3,18 @@ class Solution:
         #use a arr to store the substring
         #use a sliding window to iterate thru it
         #if the letter is not duplicate, then increase window
-        #else, decrease window
+        #else, decrease window wherever it is duplications
         window = []
         greatestSize = 0
 
         for letter in s:
-            print(f"letter is {letter}")
             if letter not in window:
-                # print('Not in window')
                 window.append(letter)
             else:
-                # print(f'there is a duplicate {letter}')
-                if len(window) > greatestSize:
-                    greatestSize = len(window)
-                    # print(f'greatest size is now {greatestSize}')
-                window = [] #resets the window
+                greatestSize = max(greatestSize, len(window)) #check for the last substring length
+                x = window.index(letter) # grab the index of the 1st time pops up, delete anything before it too
+                window = window[x+1:] # start slicing to remove the duplicate and everything before it <-[start:stop]->
                 window.append(letter) #but still append the current letter
             
-        if len(window) > greatestSize: #this statement is here if the 'else' statement is never triggered (as in no duplicates)
-            greatestSize = len(window)
-        # print(window)
-        # print(greatestSize)
+        greatestSize = max(greatestSize, len(window)) #check for the last substring length
         return greatestSize
