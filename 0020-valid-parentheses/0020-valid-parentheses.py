@@ -1,80 +1,57 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        #STACKING! LIFO (last in, first out)
-        #we will make a empty arr called stack
-        #we will iterate thru s till the very end, and append the char from s in it
-        #if char is open
-            #stack.append(s)
-        #if char is closed (matches in our dict)
-            #if stack[-1] = closeToOpen[char] #we check if stack[-1] is open, and find if it is equal to the value of the closing bracket, which is why we make the opening as a value, and closing bracket as a key
-                #stack.pop()
-                #NOTE WE NEVER APPEND THE CLOSING BRACKET, IT WILL ALWAYS BE OPEN BRACKETS IN THE STACK
+        #when it comes to stacking, it uses a last in, first out
+        #we push the next value at the end (to insert)
+        #we pop the last value at the end (to remove)
+        
+        #we need to make a separate array
+        #so we can PUSH to a new array
+        #and if the next value is a closing bracket
+        #we will pop the open bracket in the new array
+        #we can check if the corresponding closing bracket is equal to the open
 
-        closeToOpen = {
-            ')' : '(',   
+        #answer = []
+        #for char in s:
+            #if char is NOT a closing bracket
+                #answer.append(char)
+            #if char IS a closing bracket
+                #check if opening bracket matches the closing bracket #use dict
+                #answer.pop()
+            
+        #return answer == []
+        #this is for checking the closing bracket is matching with the open bracket 
+        matchClosingWithOpen = { 
             '}' : '{',
-            ']' : '['
+            ']' : '[',
+            ')' : '('
         }
-        stack = [] #LAST IN, FIRST OUT 
-        for char in s:
-            if char in closeToOpen: #if the character is a closing bracket
-                if stack and stack[-1] == closeToOpen[char]: #if the value of ']' is equal to the first char of the stack (which should be an open)
-                    stack.pop()
-                else:
-                    return False
-            else: #if character is a open bracket
-                stack.append(char)
-
-        return len(stack) == 0 
-
-
-
-
-
-
-
-        #each bracket must be closed
-        #if there is '(' there must be a ')', else false, vice versa
-        #IMPORTANT
-        #left brackets must always be first '(', else false
+        answer = []
         
-        #convert s to a list
-        #store our chars in a hashmap, so if there is our value in there, skip
-        #else do stuff
-
-        #1. determine if a bracket has a closing
-        #two pointer method
-        #pointer1 = 0
-        
-        #for pointer1 in s
-            #for pointer2 in range(pointer1, len(s)):
-                #if char = '('
-                    #find ')'
-                        #if found
-                        #s.pop(char)
-                #elif char = ')'
-                    #return false
-                #elif char = '['
-                    #find ')'
-                        #if found
-                        #s.pop(char)
-                        #...
-        # s = list(s) #will make mutable
-        # print(s)
-        # for pointer1 in range(len(s)):
-        #     print(f'CHARACTER IS {pointer1}, find the closing bracket ---------')
-        #     for pointer2 in range(pointer1, len(s)):
-        #         print(f'character: {s[pointer2]}')
-        #         if s[pointer1] == '(':
-        #             if s.index(')') == True:
-        #                 s.pop(pointer1)
-        #                 s.pop(s.index(')'))
-        #             else:
-        #                 return False
-        # if s == []:
-        #     return True
-        # else:
+        # if len(s) == 1:
         #     return False
 
+        for char in s:
+            if char in matchClosingWithOpen:
+                if answer and answer[-1] == matchClosingWithOpen[char]: #if there is something in answer and the top of the stack matches with the key value of char..
+                    answer.pop() #pop the last bracket in the arr
+                else: #but what if it doesnt match ?
+                    return False
+
+            else:
+                answer.append(char)
+        return answer == []
 
 
+
+
+        #   for char in s:
+        #     if char and char == matchClosingWithOpen[char]: #if there is characters in answer and closing bracket does match with 
+        #         answer.append(char)
+        #     else:
+        #         if answer == []: #what if first char is a closing bracket? return False  
+        #             return False
+        #         if answer[-1] == matchClosingWithOpen[char]: #if last character in answerArr == val of char...
+        #             answer.pop()
+        #         else: #what if the last char does not match with the closing bracket?
+        #             return False
+        # return answer == []
