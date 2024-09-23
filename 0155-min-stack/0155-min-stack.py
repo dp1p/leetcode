@@ -15,8 +15,8 @@ class MinStack:
     def getMin(self) -> int:
         return min(self.stack)
 
-    def __repr__(self) -> str: 
-        return f"Arr Stack {self.stack}"
+    # def __repr__(self) -> str: 
+    #     return f"Arr Stack {self.stack}"
 
 # Your MinStack object will be instantiated and called as such:
 # obj = MinStack()
