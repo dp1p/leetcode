@@ -38,4 +38,6 @@ class Solution:
                     return False
                 if answer[-1] == matchClosingWithOpen[char]: #if last character in answerArr == val of char...
                     answer.pop()
+                else: #what if the last char does not match with the closing bracket?
+                    return False
         return answer == []
