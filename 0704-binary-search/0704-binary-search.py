@@ -24,12 +24,6 @@ class Solution:
         #return -1
         
         low, high = 0, len(nums)-1 #to prevent going out of index
-        if len(nums) == 1:
-            if target != nums[0]:
-                return -1
-            else:
-                return 0
-
         while low <= high:
             midpoint = (low + high) // 2 #(get midpoint)
             if target > nums[midpoint]: #if value at midpoint is LESS than target num, move LOW UP
@@ -39,60 +33,4 @@ class Solution:
             else:
                 return midpoint
         return -1
-            # if midpoint == 1 or midpoint == len(nums) - 2: #if midpoint is at index 1 or at very end of arr
-            #     print('checking beginning')
-            #     if target == nums[0]: #we will check at index 0 for the user
-            #         return 0
-            #     elif target == nums[-1]: #we will check very last index for the user
-            #         return len(nums)-1
-            #     else:
-            #         print('not found')
-            #         return -1
-       
-        # if len(nums) % 2 == 0: #if the length of sequence is even print('not even')
-        #     midpoint = int(len(nums) / 2 )#grab index of midpoint
-        #     if target == nums[midpoint]: #if the value of midpoint is equal to the target
-        #         print("other hi")
-        #         print("VALUE WAS FOUND ALREADY!!! LOL")
-        #         return midpoint #return index 
-
-            # while target < nums[midpoint]: #we go down the sorted arr and find it
-            #     print("target is LESS than nums")
-            #     if target == nums[midpoint]:
-            #         print(f"found")
-            #         return midpoint
-            #     else:
-            #         print(f"not found yet")
-            #         midpoint -= 1
-            #     if midpoint == 0: #if midpoint is at the very last index
-            #         return -1
-
-            # while target > nums[midpoint]: #we go down the sorted arr and find it
-            #     print("target is GREATER than nums")
-            #     midpoint +=1 
-            #     if midpoint >= len(nums): #if this goes out of bounds
-            #         return -1
-            #     print(f"INCREASING {midpoint}")
-                # print(nums[midpoint])
-                # if target == nums[midpoint]:
-                #     print(f"found")
-                #     return midpoint
-                # else:
-                #     print(f"not found yet")
-                #     midpoint += 1
-                # if midpoint == len(nums) - 1: #if midpoint is at the very last index
-                #     print("last")
-                #     return -1
-
            
-                
-            
-
-
-                
-        # else:
-        #     print('not even')
-        #     midpoint = len(nums)+1 / 2
-        #     print(midpoint)
-        # midpoint = len(nums) 
-
