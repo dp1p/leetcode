@@ -30,24 +30,32 @@ class Solution:
             else:
                 return 0
 
-        while low <= high:
+        while low < high:
+            print(f"{low} + {high} + {low} / 2 =")
             midpoint = (low + high) // 2 #(get midpoint)
-            if target > nums[midpoint]: #if value at midpoint is LESS than target num, move LOW UP
-                low = midpoint + 1
-            elif target < nums[midpoint]: #if value at midpoint is GREATER than target num, move HIGH DOWN
-                high = midpoint - 1
-            else:
+            print(midpoint)
+          
+            if target == nums[midpoint]: #if the target is found right at midpoint
+                print("nicely done, found ! ")
                 return midpoint
-        return -1
-            # if midpoint == 1 or midpoint == len(nums) - 2: #if midpoint is at index 1 or at very end of arr
-            #     print('checking beginning')
-            #     if target == nums[0]: #we will check at index 0 for the user
-            #         return 0
-            #     elif target == nums[-1]: #we will check very last index for the user
-            #         return len(nums)-1
-            #     else:
-            #         print('not found')
-            #         return -1
+            elif target > nums[midpoint]: #if value at midpoint is LESS than target num, move LOW UP
+                print(f'{target} > {nums[midpoint]}')
+                print(f'moving low midpoint to {midpoint}')
+                low = midpoint 
+            elif target < nums[midpoint]: #if value at midpoint is GREATER than target num, move HIGH DOWN
+                print(f'moving high midpoint to {midpoint}')
+                print(f'{target} < {nums[midpoint]}')
+                high = midpoint
+            
+            if midpoint == 1 or midpoint == len(nums) - 2: #if midpoint is at index 1 or at very end of arr
+                print('checking beginning')
+                if target == nums[0]: #we will check at index 0 for the user
+                    return 0
+                elif target == nums[-1]: #we will check very last index for the user
+                    return len(nums)-1
+                else:
+                    print('not found')
+                    return -1
        
         # if len(nums) % 2 == 0: #if the length of sequence is even print('not even')
         #     midpoint = int(len(nums) / 2 )#grab index of midpoint
