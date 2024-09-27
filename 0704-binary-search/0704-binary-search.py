@@ -17,13 +17,13 @@ class Solution:
         #< means itll break when low is greater than or EQUAL
         while low <= high: #while low is less than high, it is <= cuz it will break when LOW is GREATER than high
             midpoint = (low + high) // 2 #we will get the midpoint by adding both nums, then dividing 2
-            print(midpoint)
+            # print(midpoint)
             if nums[midpoint] == target:
                 return midpoint #we return the index of the num
             elif nums[midpoint] < target: #if the midpoint is LESS than the target
-                print('low')
+                # print('low')
                 low = midpoint + 1 #we will make low equal the midpoint, but go to the next index above midpoint
             elif nums[midpoint] > target:
-                print('high')
+                # print('high')
                 high = midpoint - 1
         return -1 #if number is not found, return -1
