@@ -1,36 +1,29 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        #when it comes to to binary search, we divide to get rid half of the nums to take less "steps"
-        #when you do arr.index(number), worse case it will n steps to get to a number
-        #with binary search, worse case it will take log(n) to get to the numbers
-
-        1.0
-        #assuming it is sorted, we will grab the midpoint
-        #once we compare it to the middle of the arr, we will determine how to divide it if target > or <
-        #then iterate to the next number
-        #once it hits the last num, if it is not there, return -1
-
-        2.0
-        #we have low and high
-        #low, high == 0, len(nums)-1 #these are essentially pointers
-        #while low < high 
-            #midpoint == low + high // 2 (get midpoint)
-            #if target > nums[midpoint] #if target is GREATER than the value of the midpoint 
-                #low = midpoint #move the LOW pointer to where midpoint
-            #elif target < nums[midpoint] #if target is LESS than the value of the midpoint
-                #high = midpoint  #move the HIGH pointer 
-            #elif target == nums[midpoint]:
-                #return midpoint #return midpoint of where the index was found 
-        #return -1
-        
-        low, high = 0, len(nums)-1 #to prevent going out of index
-        while low <= high:
-            midpoint = (low + high) // 2 #(get midpoint)
-            if target > nums[midpoint]: #if value at midpoint is LESS than target num, move LOW UP
-                low = midpoint + 1
-            elif target < nums[midpoint]: #if value at midpoint is GREATER than target num, move HIGH DOWN
-                high = midpoint - 1
+        #binary search is when you search through an ALREADY sorted arr of nums
+        #and instead of searching for a number in O(n) (index & for loop), you search the number by...
+        #splitting the arr in half, you grab the midpoint, see if target is greater or less than midpoint and 
+        #split
+        #you have low = index 0, high = last index, then once you split you move either or the pointers
+        #low = midpoint + 1 
+        #high = midpoint - 1
+        low = 0
+        high = len(nums)-1 #to prevent going out of index
+        if len(nums) == 1:
+            if target == nums[0]:
+                return 0
             else:
-                return midpoint
-        return -1
-           
+                return -1
+        #< means itll break when low is greater than or EQUAL
+        while low <= high: #while low is less than high, it is <= cuz it will break when LOW is GREATER than high
+            midpoint = (low + high) // 2 #we will get the midpoint by adding both nums, then dividing 2
+            print(midpoint)
+            if nums[midpoint] == target:
+                return midpoint #we return the index of the num
+            elif nums[midpoint] < target: #if the midpoint is LESS than the target
+                print('low')
+                low = midpoint + 1 #we will make low equal the midpoint, but go to the next index above midpoint
+            elif nums[midpoint] > target:
+                print('high')
+                high = midpoint - 1
+        return -1 #if number is not found, return -1
