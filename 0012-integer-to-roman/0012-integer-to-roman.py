@@ -22,7 +22,7 @@ class Solution:
 
         i = 0
         num = list(str(num))
-        print(num)
+        # print(num)
        
         while len(num) != 0:
             number = int(num[i] + ('0'*(len(num)-1))) #we will print the FIRST number plus the amount of zeros
@@ -31,8 +31,8 @@ class Solution:
                 if number > list(roman_flipped.keys())[i]-1: #if the number is greater than the value or even equal
                     number = number - list(roman_flipped.keys())[i] #the number is subtracted from the greatest / equal val
                     letter = list(roman_flipped.values())[i]
-                    print(letter)
-                    print(number)
+                    # print(letter)
+                    # print(number)
                     answer += letter #append the respective letter
                     i = 0 #reset iteration
                 else: #if number is not greater than the value or equal
