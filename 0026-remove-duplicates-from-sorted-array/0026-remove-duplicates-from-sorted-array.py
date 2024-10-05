@@ -1,33 +1,39 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        #once we find the duplicate, store that value in a new array?
-        #then once we find all the duplicates, we slowly start deleting the values in the old arr
-        #replace it with an underscore
+        #TWO POINTER METHOD
+        #we will have a left and right pointer
+        #left pointer starts at zero
+        #right pointer starts at i + 1
+        
+        #the left pointer will be the unique value
+        #the purpose of the right pointer is to scan and swap places wherver the left pointer is
 
-        k = len(nums)
-        seen = []
-        #to add the duplicate values in here
-        for i in range(len(nums)-1):
-            if nums[i] == nums[i+1]:
-                seen.append(nums[i])
-        # print(seen, nums)
+        #while right pointer != len(nums)-1
+            #if the nums[left pointer] == nums[right pointer[]:
+                #move right pointer
+                #move left pointer 
+            #elif nums[left pointer] != nums[right pointer[]:
+                #nums[left pointer] = nums[right pointer]
+                #move right pointer
+                #move left pointer
+        
+        counter = 1 #to count how many times there is a unique number
+        if len(nums) == 1:
+            return counter
 
-        #IF IT IS EMPTY
-        if seen == []:
-            return len(nums)
-        #to then POP the values in the original arr
-        seenLen = len(seen)
-        i = 0
-        # print(seen, nums)
-        while len(nums) > len(seen): #we know that the length of nums is greater than duplicates
-            if nums[i] == seen[0]:
-                nums.pop(i)
-                seen.pop(0)
-                i = 0 #when you pop, you essentially decrease the len(nums) as well.
+        left = 0
+        right = 1
+
+        while right != len(nums):
+            # print(nums[left], nums[right])
+            if nums[left] != nums[right]:
+                left += 1 #we move to the left once we find a number that is NOT equal to eachother
+                #print('swapping!')
+                nums[left] = nums[right]
+                right += 1
+                counter += 1
             else:
-                i += 1 #if the number isnt a duplicate, just go to the next number
-            if seen == []:
-                break
-            
-
-        return k-seenLen
+                #print('they equal eachother, no swap')
+                right += 1
+        # print(nums)
+        return counter
