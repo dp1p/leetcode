@@ -17,9 +17,8 @@ class Solution:
                 #move right pointer
                 #move left pointer
         
-        counter = 1 #to count how many times there is a unique number
         if len(nums) == 1:
-            return counter
+            return 1
 
         left = 0
         right = 1
@@ -31,9 +30,8 @@ class Solution:
                 #print('swapping!')
                 nums[left] = nums[right]
                 right += 1
-                counter += 1
             else:
                 #print('they equal eachother, no swap')
                 right += 1
         # print(nums)
-        return counter
+        return left+1
