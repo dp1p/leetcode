@@ -18,7 +18,7 @@ class Solution:
         for win in wins:
             if win not in loses: #as long as they are not in the loses
                 result[0].append(win)
-        print(result)
+        # print(result)
         
         result[0].sort()
         result[1].sort()
