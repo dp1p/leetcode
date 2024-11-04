@@ -9,9 +9,7 @@ class Solution:
         #return stack
         stack = []
         for i in range(len(s)):
-            if stack == []: #if stack empty
-                stack.append(s[i]) #place the letter in the empty stack
-            elif stack[-1] == s[i]: #if the last letter of the stack is the same as the next iteration
+            if stack and stack[-1] == s[i]: #if the last letter of the stack is the same as the next iteration
                 stack.pop()
             else: #else if they do not equal
                 stack.append(s[i])
