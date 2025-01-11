@@ -4,6 +4,9 @@
  * @return {number[]}
  */
  /*
+// talk about the proble
+// solve in a 'human way'
+// psuedo code in a very 'straightward'
 
     var difference = ??
     subtract target from number
