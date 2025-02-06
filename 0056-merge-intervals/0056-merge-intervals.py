@@ -1,19 +1,12 @@
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        left, right = 0, 1
-        intervals.sort()
+        merge = []
+        intervals.sort(key = lambda interval: interval[0])
         print(intervals)
-        while right < len(intervals):
-
-            if intervals[left][1] >= intervals[right][0]:
-                if intervals[left][1] >= intervals[right][1]:
-                    intervals.pop(right)
-                else:
-                    intervals[left].pop(1)
-                    intervals[left].append(intervals[right][1])
-                    intervals.pop(right)
+        for interval in intervals:
+            if merge == [] or merge[-1][1] < interval[0]:
+                merge.append(interval)
             else:
-                left = right
-                right += 1
-            # print(intervals)
-        return (intervals)
+                if merge[-1][-1] < interval[1]:
+                    merge[-1][1] = interval[1]
+        return (merge)
