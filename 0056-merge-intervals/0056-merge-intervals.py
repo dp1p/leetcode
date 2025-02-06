@@ -7,6 +7,5 @@ class Solution:
             if merge == [] or merge[-1][1] < interval[0]:
                 merge.append(interval)
             else:
-                if merge[-1][-1] < interval[1]:
-                    merge[-1][1] = interval[1]
+               merge[-1][-1] = max(merge[-1][-1], interval[1])
         return (merge)
