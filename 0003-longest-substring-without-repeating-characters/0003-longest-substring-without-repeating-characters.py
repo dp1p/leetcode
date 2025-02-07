@@ -1,20 +1,20 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        #use a arr to store the substring
-        #use a sliding window to iterate thru it
-        #if the letter is not duplicate, then increase window
-        #else, decrease window wherever it is duplications
-        window = []
-        greatestSize = 0
-
-        for letter in s:
-            if letter not in window:
-                window.append(letter)
+        substring = set()
+        max_sub = 0
+        left = 0
+        if len(s) == 1:
+            return 1
+        
+        for right in range(len(s)):
+            if s[right] not in substring:
+                substring.add(s[right])
+                print(substring)
             else:
-                greatestSize = max(greatestSize, len(window)) #check for the last substring length
-                x = window.index(letter) # grab the index of the 1st time pops up, delete anything before it too
-                window = window[x+1:] # start slicing to remove the duplicate and everything before it <-[start:stop]->
-                window.append(letter) #but still append the current letter
-            
-        greatestSize = max(greatestSize, len(window)) #check for the last substring length
-        return greatestSize
+                max_sub = max(max_sub, len(substring))
+                print(max_sub)
+                while s[right] in substring: #how do i iterate till it hits s[i]
+                    substring.remove(s[left])
+                    left += 1
+                substring.add(s[right])
+        return  max(max_sub, len(substring))
