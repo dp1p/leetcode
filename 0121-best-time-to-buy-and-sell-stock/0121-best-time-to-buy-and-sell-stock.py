@@ -1,26 +1,24 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        """
-        we will use a for loop to iterate
-            two pointer method
-            sell pointer - will be the one moving, sells if it is higher, value will be called 'profit'
-            buy pointer, reassign itself to a index if there is a lower number assign it'profit'                
-            sell pointer will be starting at wherever buy pointer is
-            if profit <= the current profit
-                currentprofit = profit
-        """
-        buyPointer = prices[0] #finds where the stock is at its lowest
-        sellPointer = 0 #sells where the stock increases, will be moving
-        profit = 0 # sell - buy
+        #when it comes to sliding window
+        #we use left and right
+        #left starts at 0
+        #r will be the for loop
+
+        #WHAT ARE WE DEALING WITH
+        #we know that we have to find the max profit we can get
+        #f we find any day that is greater than the lowest
+        # subtract it
+        #if there is a day that is lower than the lowest
+        # lowest equal that value
         
-        for i in range(1, len(prices)): #starting at index 1
-            if prices[i] < buyPointer: #if the next day the price is lower than yesterday #5 < 1
-                buyPointer = prices[i]
-            else:
-                sellPointer = prices[i] #we sell when the price is higher on the next day
-                currentProfit = sellPointer - buyPointer
-                if currentProfit > profit:
-                    profit = currentProfit
-        
+        #variable window - as in it can change
+        l = 0
+        lowest = prices[0]
+        profit = 0
+        for r in range(len(prices)):
+            if prices[r] < lowest: #we get the lowest price
+                lowest = prices[r]
+            elif prices[r] > lowest:
+                profit = max(profit, prices[r] - lowest)
         return profit
-                
