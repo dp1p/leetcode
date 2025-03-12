@@ -7,11 +7,22 @@
 class Solution:
     def hasCycle(self, head: Optional[ListNode]) -> bool:
         #we can use a fast and slow pointer
-        slow = head
-        fast = head
-        while slow and fast and fast.next: #while they are not none
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
+        # slow = head
+        # fast = head
+        # while slow and fast and fast.next: #while they are not none
+        #     slow = slow.next
+        #     fast = fast.next.next
+        #     if slow == fast:
+        #         return True
+        # return False
+
+        #hashmaps
+        hashmap = {}
+        curr = head
+
+        while curr:
+            if curr in hashmap:
                 return True
+            hashmap[curr] = curr.val
+            curr = curr.next
         return False
