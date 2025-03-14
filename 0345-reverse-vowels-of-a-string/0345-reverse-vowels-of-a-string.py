@@ -18,10 +18,8 @@ class Solution:
                 vowel_in_s.append(char)
         vowel_in_s = vowel_in_s[::-1]
         s = list(s)
-        print(vowel_in_s)
         for i in range(len(s)):
             if s[i].lower() in vowels:
-                print(s[i])
                 s[i] = vowel_in_s[0]
                 vowel_in_s.pop(0)
         return ''.join(s)
