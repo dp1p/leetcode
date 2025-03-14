@@ -1,25 +1,24 @@
 class Solution:
     def reverseVowels(self, s: str) -> str:
         """
-        IceCreAm
+        two pointers
 
-        vowels in here are
-        i, e, e, A
         
-        iterate twice
-        first iteration is to get all the vowels
-        next iteration is to replace every vowel
         """
-        vowels = {'a', 'e', 'i', 'o', 'u'}
-        vowel_in_s = []
 
-        for char in s:
-            if char.lower() in vowels:
-                vowel_in_s.append(char)
-        vowel_in_s = vowel_in_s[::-1]
+        vowels = {'a', 'e','i','o','u'}
         s = list(s)
-        for i in range(len(s)):
-            if s[i].lower() in vowels:
-                s[i] = vowel_in_s[0]
-                vowel_in_s.pop(0)
+        left = 0
+        right = len(s)-1
+
+        while left < right:
+            while left < right and s[left].lower() not in vowels:
+                left += 1
+            while left < right and s[right].lower() not in vowels:
+                right -= 1
+            s[left], s[right] = s[right], s[left]
+            left += 1
+            right -= 1
         return ''.join(s)
+            
+
