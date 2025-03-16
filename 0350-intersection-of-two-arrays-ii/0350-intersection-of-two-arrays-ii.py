@@ -14,6 +14,8 @@ class Solution:
                 hashmap[num] -= 1
                 if hashmap[num] == 0:
                     del hashmap[num]
+            if len(hashmap) == 0:
+                return ans
         return ans
         #brute force
         # ans = []
