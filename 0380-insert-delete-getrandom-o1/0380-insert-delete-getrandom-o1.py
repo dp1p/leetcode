@@ -1,41 +1,57 @@
 class RandomizedSet:
 
     def __init__(self):
-        #intialize both a hashmap and a hashset
+        #"intialize a hashmap"
+        #intialize a list
         self.hashmap = {}
         self.arr = []
+
     def insert(self, val: int) -> bool:
-        #insert into hashmap / hashset o(1)
-        #appending to an arr o(1)
+        #when we insert in our hashmap, we make val the key, val the idx
+            #hashmap[val] == len(nums) - 1
+            #insert to list
+            #returns True
+        #else return False
         if val in self.hashmap:
             return False
         self.arr.append(val)
-        self.hashmap[val] = len(self.arr)-1
+        self.hashmap[val] = len(self.arr) - 1
+
         return True
 
     def remove(self, val: int) -> bool:
-        #insert into hashmap / hashset o(1)
-        #removing an idx using index() is o(n)
-        #poping is o(1)
-        # swap the current value to the last value of the list
-        # in order to swap, we'll need
-        # the idx of the value
-        # current val
-        # 2
-        if val in self.hashmap:
-            last_element = self.arr[-1] # 2
-            indice_of_val = self.hashmap[val] # 0
-            self.hashmap[last_element] = indice_of_val #2 : 0
-            self.arr[indice_of_val] = last_element 
-            self.arr.pop()
-            del self.hashmap[val]
-            return True
-        return False
+        #if val in hashmap:
+        """
+        [1, 2, 3]
+        we can get last index o(1)
+        
+        idx_to_remove = hashmap[val] #2
+        last_val = arr[-1] #3
+        now we just swap them
+        idx_to_remove = last_val
+        arr.pop()
+        """
+        if val not in self.hashmap:
+            return False
+        #instantiate the variables we going to need when swapping
+        idx_to_remove = self.hashmap[val] #0
+        last_val = self.arr[-1] #2
+
+        #before we remove, we need too update the new idx
+        self.hashmap[last_val] = idx_to_remove
+
+        #now we remove and delete
+        self.arr[idx_to_remove] = last_val
+        self.arr.pop()
+        del self.hashmap[val]
+        return True
 
     def getRandom(self) -> int:
-        #cannot get a random number in a hashset
-        #if we convert the hashset into an arr, thats o(n)
+        #"returns a random probability" o(1), so we need a list
         return random.choice(self.arr)
+
+        
+
 
 # Your RandomizedSet object will be instantiated and called as such:
 # obj = RandomizedSet()
