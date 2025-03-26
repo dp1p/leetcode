@@ -8,9 +8,4 @@ class Solution:
             hashmap[num] = hashmap.get(num, 0) + 1
         sorted_val = sorted(hashmap, key=hashmap.get, reverse=True)
 
-        ans = []
-        while k:
-            ans.append(sorted_val[0])
-            sorted_val.pop(0)
-            k -= 1
-        return ans
+        return sorted_val[:k]
