@@ -1,21 +1,16 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        h = {}
-        answer = []
+        #two passes
+        #hashmap to count
+        #another loop to get the highest value
+        hashmap = {}
+        for num in nums:
+            hashmap[num] = hashmap.get(num, 0) + 1
+        sorted_val = sorted(hashmap, key=hashmap.get, reverse=True)
 
-        for i in range(len(nums)):
-            if nums[i] not in h.keys():
-                h[nums[i]] = 1
-            else:
-                h[nums[i]] += 1
-        sortedH = (sorted(h.items(), key=lambda item:item[1], reverse=True)) #sorts by values
-        # print(sortedH)
-        #create another for loop to return answer for k num occurring the most
-
-        for i in range(k):
-            answer.append(sortedH[i][0]) #we are appending sortedH[i], grabbing item[0], which is the value
-            
-
-            
-        # print(answer)
-        return answer
+        ans = []
+        while k:
+            ans.append(sorted_val[0])
+            sorted_val.pop(0)
+            k -= 1
+        return ans
