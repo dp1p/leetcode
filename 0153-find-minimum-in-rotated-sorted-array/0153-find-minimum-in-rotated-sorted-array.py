@@ -1,19 +1,37 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        #the output looks like it prints the starting number
-        #must return the minimum rotations to get its original starting point
-        #we need to somehow 'rotate the numbers' to get to its original starting point
-        #and implement a counter so we can return that value
-        rotationCounter = 0 #to keep track
-        minNum = min(nums)
-        
-        for num in nums:
-            lastNum = nums.pop()
-            nums.insert(0, lastNum) #insert at index 0
-            #print(nums, rotationCounter)
-            rotationCounter += 1
-            if nums[0] == minNum:
-                #print( f'it needs to be rotated {rotationCounter} times')
-                return nums[0]
+        """
 
-            
+        need to find the minimum 
+
+        we can look at the middle
+
+        compare if the middle number is greater than right
+
+        [3,4,5,1,2]
+        L    M    R
+
+        is 5 < 2?
+        NO!
+        move left pointer cuz we want to get closer to the middle number
+
+
+        [1,2]
+        is 1 less than 2?
+
+        YES!
+
+        move right pointer cuz we know we are closer to getting a smalelr number
+
+        """
+        left = 0
+        right = len(nums) - 1
+
+        while left <= right:
+            middle = (left + right) // 2
+            if nums[middle] < nums[right]: #we want to find the mnimum number
+                right = middle
+            elif nums[middle] >= nums[right]:
+                left = middle + 1
+        return nums[middle]
+        
